@@ -34,7 +34,8 @@ namespace ReadDeviceToCloudMessages
                 if (eventData == null) continue;
 
                 string data = Encoding.UTF8.GetString(eventData.GetBytes());
-                Console.WriteLine("Messages received: '{0}'", data); 
+                var message = $"{eventData.EnqueuedTimeUtc.ToLocalTime():hh:mm:ss.fff} {eventData.SystemProperties["iothub-connection-device-id"]} sent '{data}'";
+                Console.WriteLine(message);
             }
         }
 
